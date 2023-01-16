@@ -20,7 +20,6 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 import Application from '@ioc:Adonis/Core/Application'
-// Encore.setOutputPath('./public/assets')
 
 Route.get('/', async ({ view }) => {
   return view.render('index', { app: Application })
