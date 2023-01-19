@@ -2,6 +2,107 @@
 @tailwind components;
 @tailwind utilities;
 
+.resizeable { 
+  resize: both;
+}
+
 .rover { 
   height: 50px;
+}
+
+.rov-fac-0 { 
+  rotate: 180deg;
+}
+
+.rov-fac-1 { 
+  rotate: 270deg;
+}
+
+.rov-fac-2 { 
+  rotate: 360deg;
+}
+
+.rov-fac-3 { 
+  rotate: 90deg;
+}
+
+.rml-10 { 
+  margin-left: 10%;
+}
+.rml-20 { 
+  margin-left: 20%;
+}
+
+.rml-30 {
+  margin-left: 30%;
+}
+
+.rml-40 {
+  margin-left: 40%;
+}
+
+.rml-50 { 
+  margin-left: 50%;
+}
+
+.rml-60 { 
+  margin-left: 60%;
+}
+
+.rml-70 { 
+  margin-left: 70%;
+}
+
+.rml-80 { 
+  margin-left: 80%;
+}
+
+.rml-90 { 
+  margin-left: 90%;
+}
+
+.rml-100 { 
+  margin-left: calc(100% - 5vw);
+}
+
+/* margin top */
+
+.rmt-100 { 
+  margin-top: 0%;
+}
+
+.rmt-90 { 
+  margin-top: 5%;
+}
+
+.rmt-80 {
+  margin-top: 10%;
+}
+
+.rmt-70 {
+  margin-top: 15%;
+}
+
+.rmt-60 { 
+  margin-top: 20%;
+}
+
+.rmt-50 { 
+  margin-top: 25%;
+}
+
+.rmt-40 { 
+  margin-top: 30%;
+}
+
+.rmt-30 { 
+  margin-top: 35%;
+}
+
+.rmt-20 { 
+  margin-top: 40%;
+}
+
+.rmt-10 { 
+  margin-top: 50%;
 }
