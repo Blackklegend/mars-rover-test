@@ -7,11 +7,11 @@ import rover from './assets/mars-rover.png'
 
 function App() {
   
-  const directions = ['N', 'L', 'S', 'O']
+  const directions = ['N', 'E', 'S', 'W']
   const [roverId, setRoverId] = useState(1);
 
-  const [posX, setPosX] = useState(0);
-  const [posY, setPosY] = useState(10);
+  const [posX, setPosX] = useState(5);
+  const [posY, setPosY] = useState(5);
   const [facing, setFacing] = useState(0);
 
   useEffect(() => { 
@@ -38,7 +38,7 @@ function App() {
         (posX < 10) ? setPosX(posX + 1) : alert("Você não pode mais se mover nessa direção! 😢");
         break;
       case 2:
-        (posY > 1) ? setPosY(posY - 1) : alert("Você não pode mais se mover nessa direção! 😢");
+        (posY >= 1) ? setPosY(posY - 1) : alert("Você não pode mais se mover nessa direção! 😢");
         break;
       case 3:
         (posX >= 1) ? setPosX(posX - 1) : alert("Você não pode mais se mover nessa direção! 😢");
@@ -75,19 +75,22 @@ function App() {
 
   return (
     <div className="bg-red-500 customfont h-screen w-screen flex justify-center">
-      <Resizable defaultSize={{
-        width: 1000,
-        height: 550
-        }} className="mt-3 border rounded mx-2 p-0 mb-28 min-w-9/12 resize">
+      <Resizable 
+        defaultSize={{
+          width: 1000,
+          height: 550
+        }} 
+        className="mt-3 border rounded mx-2 p-0 mb-28 min-w-9/12"
+      >
         <img 
           src={rover} 
           className={"rover rml-" + posX * 10 + " rmt-" + posY * 10 + " rov-fac-" + facing}
-          />
+        />
       </Resizable>
 
       <div className="text-black absolute bottom-0 place-self-center grid w-64 place-items-center">
         <div className="bg-white rounded-t-lg text-dark p-2 d-block w-2/3 border-bottom-0 rounded-bottom-0 row-span-1 text-center">
-          <p className="inline text-xl">X: {posX} | Y: {posY - 1} </p>
+          <p className="inline text-xl">X: {posX} | Y: {posY} | H: {directions[facing]}</p>
         </div>
         <div className="bg-white row-span-1 min-w-full block rounded-t-lg text-center">
             <button className="p-2 hover:bg-gray-200 rounded-md m-1 min-w-[55px]" onClick={() => rotateRover(false)}>
