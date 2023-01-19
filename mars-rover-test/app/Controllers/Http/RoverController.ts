@@ -1,4 +1,4 @@
-// import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Rover from "App/Models/Rover";
 
 export default class RoverController {
@@ -9,21 +9,23 @@ export default class RoverController {
         return rovers
     }
 
-    async store({ request }) {
-        const data = request.only(['x_position', 'y_position', 'facing'])
+    async store({ request, response }: HttpContextContract) {
+        const data = request.all()
 
         const rover = await Rover.create({id: data.id, x_position: data.x_position, y_position: data.y_position})
+
+        response.status(201)
 
         return rover;
     }
 
-    async show({params}) { 
+    async show({params}: HttpContextContract) { 
         const rover = await Rover.findOrFail(params.id)
         
         return rover;
     }
 
-    async update({params, request}) {
+    async update({params, request}: HttpContextContract) {
         const data = request.only(['x_position', 'y_position', 'facing'])
         const id = params.id
 
@@ -32,7 +34,7 @@ export default class RoverController {
         return rover;
     }
 
-    async destroy({ params }) { 
+    async destroy({ params }: HttpContextContract) { 
         const rover = await Rover.findOrFail(params.id)
 
         rover.delete()
