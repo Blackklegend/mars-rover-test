@@ -6,12 +6,28 @@ import rover from './assets/mars-rover.png'
 
 
 function App() {
-
+  
   const directions = ['N', 'L', 'S', 'O']
+  const [roverId, setRoverId] = useState(1);
 
-  const [posX, setPosX] = useState(0)
-  const [posY, setPosY] = useState(10)
-  const [facing, setFacing] = useState(0)
+  const [posX, setPosX] = useState(0);
+  const [posY, setPosY] = useState(10);
+  const [facing, setFacing] = useState(0);
+
+  useEffect(() => { 
+    api.post("/api/v1/rover", 
+      { 
+        x_position: posX, 
+        y_position: posY, 
+        facing: directions[facing]
+      }
+    )
+    .then((response) => {
+      setRoverId(response.data.id)
+      console.log(response)
+    })
+    .catch((err) => console.error("Algo deu errado!", err))
+  }, [])
 
   function moveRover() {
     switch (facing) {
@@ -31,18 +47,18 @@ function App() {
         break;
     }
 
-
-    useEffect(() => { 
-      api.post("/api/v1/rover", 
-        { 
-          x_position: posX, 
-          y_position: posY, 
-          facing: directions[facing]
-        }
-      )
-      .then((response) => console.log(response))
-      .catch((err) => console.error("Algo deu errado!", err))
+    api.put("/api/v1/rover/"+roverId, 
+      {
+        x_position: posX, 
+        y_position: posY, 
+        facing: directions[facing]
+      }
+    )
+    .then((response) => {
+      setRoverId(response.data.id)
+      console.log(response)
     })
+    .catch((err) => console.error("Algo deu errado!", err))
   }
 
   function rotateRover(clockWise: boolean): void {
