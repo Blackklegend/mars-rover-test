@@ -24,4 +24,8 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
-Route.resource('rover', 'RoverController')
+Route.group(() => {
+
+  Route.resource('rover', 'RoverController')
+
+}).prefix('/api/v1')
