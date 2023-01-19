@@ -1,7 +1,7 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Rover from "App/Models/Rover";
 
-export default class RoversController {
+export default class RoverController {
 
     async index() {
         const rovers = await Rover.all();
@@ -18,7 +18,7 @@ export default class RoversController {
     }
 
     async show({params}) { 
-        const rover = await Rover.findOrFail({id: params.id })
+        const rover = await Rover.findOrFail(params.id)
         
         return rover;
     }
@@ -33,7 +33,7 @@ export default class RoversController {
     }
 
     async destroy({ params }) { 
-        const rover = await Rover.findOrFail({id: params.id})
+        const rover = await Rover.findOrFail(params.id)
 
         rover.delete()
     }
