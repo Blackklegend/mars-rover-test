@@ -1,5 +1,6 @@
 import './App.css'
-import { useState } from 'react'
+import api from './services/axios';
+import { useEffect, useState } from 'react'
 import { Resizable } from "re-resizable";
 import rover from './assets/mars-rover.png'
 
@@ -29,6 +30,19 @@ function App() {
       default:
         break;
     }
+
+
+    useEffect(() => { 
+      api.post("/api/v1/rover", 
+        { 
+          x_position: posX, 
+          y_position: posY, 
+          facing: directions[facing]
+        }
+      )
+      .then((response) => console.log(response))
+      .catch((err) => console.error("Algo deu errado!", err))
+    })
   }
 
   function rotateRover(clockWise: boolean): void {
