@@ -34,9 +34,11 @@ export default class RoverController {
         return rover;
     }
 
-    async destroy({ params }: HttpContextContract) { 
+    async destroy({ params, response }: HttpContextContract) { 
         const rover = await Rover.findOrFail(params.id)
 
         rover.delete()
+
+        response.status(204)
     }
 }
